@@ -19,7 +19,7 @@ namespace Beadando_projekt
             {
                 _month = Month;
 
-                switch (_month)
+                switch (value)
                 {
                     case "January":
                         _month = "Január";
@@ -73,6 +73,7 @@ namespace Beadando_projekt
             }
         }
         public int  Year { get; set; }
+        public string Country { get; set; }
         public string Acres { get; set; }
         public string Structures { get; set; }
         public string Deaths { get; set; }
