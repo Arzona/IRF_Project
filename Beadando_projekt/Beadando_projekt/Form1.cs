@@ -19,6 +19,7 @@ namespace Beadando_projekt
         Excel.Worksheet xlSheet; 
 
 
+
         public Form1()
         {
             InitializeComponent();
@@ -36,7 +37,7 @@ namespace Beadando_projekt
                
                 xlSheet = xlWB.ActiveSheet;
                
-               // CreateTable(); 
+               CreateTable(); 
 
                 
                 xlApp.Visible = true;
@@ -57,7 +58,22 @@ namespace Beadando_projekt
 
         private void CreateTable()
         {
-            
+            string[] headers = new string[]
+            {
+                "Tűz neve",
+                "Oka",
+                "Hónap",
+                "Év",
+                "Város",
+                "Terület (holdban)",
+                "Lerombolt épületek (db)",
+                "Halálok száma (db)",
+            };
+
+            for (int i = 0; i < headers.Length; i++)
+            {
+                xlSheet.Cells[1, i + 1] = headers[i];
+            }
         }
     }
 }
