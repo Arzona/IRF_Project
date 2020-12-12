@@ -25,9 +25,8 @@ namespace Beadando_projekt
 
         public Form1()
         {
-            InitializeComponent();
-            LoadFires();
-            CreateExcel();
+            InitializeComponent();            
+            
             
             
         }
@@ -67,9 +66,9 @@ namespace Beadando_projekt
                     f.Month = line[2];
                     f.Year = int.Parse(line[3]);
                     f.Country = line[4];
-                    f.Acres = line[5];
-                    f.Structures = line[6];
-                    f.Deaths = line[7];
+                    f.Acres = int.Parse(line[5]);
+                    f.Structures = int.Parse(line[6]);
+                    f.Deaths = int.Parse(line[7]);
                     _fires.Add(f);                    
                 }
             }
@@ -105,7 +104,7 @@ namespace Beadando_projekt
             }
         }
 
-        public void CreateTable()
+        private void CreateTable()
         {
             string[] headers = new string[]
             {
@@ -144,10 +143,57 @@ namespace Beadando_projekt
                GetCell(2, 1),
                GetCell(1 + values.GetLength(0), values.GetLength(1))).Value2 = values;
 
-            }
+            }            
+        }
+
+        private void btnDone_Click(object sender, EventArgs e)
+        {
+            LoadFires();
+            CreateExcel();
+        }
+
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            CleanForm(this.Controls);
             
+        }
+        
+        private void CleanForm(Control.ControlCollection ctrl)
+        {
+            foreach (Control c in ctrl)
+            {
+                if (c is TextBox)
+                {
+                    c.ResetText();
+                }
+            }
+        }
 
+        private void btnAdd_Click(object sender, EventArgs e)
+        {
+            string[] datas = new string[typeof(Fire).GetProperties().Count()];
 
+            datas[0] = txtName.Text;
+            datas[1] = txtCause.Text;
+            datas[2] = txtMonth.Text;
+            datas[3] = txtYear.Text;
+            datas[4] = txtCountry.Text;
+            datas[5] = txtAcres.Text;
+            datas[6] = txtStructures.Text;
+            datas[7] = txtDeaths.Text;
+
+            using (StreamWriter sw = new StreamWriter("top_20_CA_wildfires.csv", true, Encoding.UTF8))
+            {
+                
+
+                for (int i = 0; i < datas.Length; i++)
+                {
+                    sw.Write(datas[i]);
+                    sw.Write(',');
+                }
+            }
+
+            CleanForm(this.Controls);
         }
     }
 }

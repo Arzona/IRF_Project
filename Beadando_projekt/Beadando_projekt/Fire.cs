@@ -68,14 +68,17 @@ namespace Beadando_projekt
                     case "December":
                         _month = "December";
                         break;
+                    default:
+                        _month = value;
+                        break;
                 };
 
             }
         }
         public int  Year { get; set; }
         public string Country { get; set; }
-        public string Acres { get; set; }
-        public string Structures { get; set; }
-        public string Deaths { get; set; }
+        public int Acres { get; set; }
+        public int Structures { get; set; }
+        public int Deaths { get; set; }
     }
 }
