@@ -140,11 +140,12 @@ namespace Beadando_projekt
                 values[counter, 7] = f.Deaths;
                 counter++;
 
-               
-            }
-            xlSheet.get_Range(
+                xlSheet.get_Range(
                GetCell(2, 1),
                GetCell(1 + values.GetLength(0), values.GetLength(1))).Value2 = values;
+
+            }
+            
 
 
         }
