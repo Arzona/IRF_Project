@@ -29,6 +29,7 @@ namespace Beadando_projekt
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.txtName = new System.Windows.Forms.TextBox();
             this.txtCause = new System.Windows.Forms.TextBox();
             this.txtMonth = new System.Windows.Forms.TextBox();
@@ -49,6 +50,8 @@ namespace Beadando_projekt
             this.btnDone = new System.Windows.Forms.Button();
             this.btnAdd = new System.Windows.Forms.Button();
             this.btnDelete = new System.Windows.Forms.Button();
+            this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.SuspendLayout();
             // 
             // txtName
@@ -57,6 +60,8 @@ namespace Beadando_projekt
             this.txtName.Name = "txtName";
             this.txtName.Size = new System.Drawing.Size(157, 20);
             this.txtName.TabIndex = 0;
+            this.txtName.Validating += new System.ComponentModel.CancelEventHandler(this.txtName_Validating);
+            this.txtName.Validated += new System.EventHandler(this.txtName_Validated);
             // 
             // txtCause
             // 
@@ -64,6 +69,8 @@ namespace Beadando_projekt
             this.txtCause.Name = "txtCause";
             this.txtCause.Size = new System.Drawing.Size(157, 20);
             this.txtCause.TabIndex = 1;
+            this.txtCause.Validating += new System.ComponentModel.CancelEventHandler(this.txtCause_Validating);
+            this.txtCause.Validated += new System.EventHandler(this.txtCause_Validated);
             // 
             // txtMonth
             // 
@@ -71,6 +78,8 @@ namespace Beadando_projekt
             this.txtMonth.Name = "txtMonth";
             this.txtMonth.Size = new System.Drawing.Size(157, 20);
             this.txtMonth.TabIndex = 2;
+            this.txtMonth.Validating += new System.ComponentModel.CancelEventHandler(this.txtMonth_Validating);
+            this.txtMonth.Validated += new System.EventHandler(this.txtMonth_Validated);
             // 
             // txtYear
             // 
@@ -78,6 +87,8 @@ namespace Beadando_projekt
             this.txtYear.Name = "txtYear";
             this.txtYear.Size = new System.Drawing.Size(157, 20);
             this.txtYear.TabIndex = 3;
+            this.txtYear.Validating += new System.ComponentModel.CancelEventHandler(this.txtYear_Validating);
+            this.txtYear.Validated += new System.EventHandler(this.txtYear_Validated);
             // 
             // txtCountry
             // 
@@ -85,6 +96,8 @@ namespace Beadando_projekt
             this.txtCountry.Name = "txtCountry";
             this.txtCountry.Size = new System.Drawing.Size(157, 20);
             this.txtCountry.TabIndex = 4;
+            this.txtCountry.Validating += new System.ComponentModel.CancelEventHandler(this.txtCountry_Validating);
+            this.txtCountry.Validated += new System.EventHandler(this.txtCountry_Validated);
             // 
             // txtAcres
             // 
@@ -92,6 +105,8 @@ namespace Beadando_projekt
             this.txtAcres.Name = "txtAcres";
             this.txtAcres.Size = new System.Drawing.Size(157, 20);
             this.txtAcres.TabIndex = 5;
+            this.txtAcres.Validating += new System.ComponentModel.CancelEventHandler(this.txtAcres_Validating);
+            this.txtAcres.Validated += new System.EventHandler(this.txtAcres_Validated);
             // 
             // txtStructures
             // 
@@ -99,6 +114,8 @@ namespace Beadando_projekt
             this.txtStructures.Name = "txtStructures";
             this.txtStructures.Size = new System.Drawing.Size(157, 20);
             this.txtStructures.TabIndex = 6;
+            this.txtStructures.Validating += new System.ComponentModel.CancelEventHandler(this.txtStructures_Validating);
+            this.txtStructures.Validated += new System.EventHandler(this.txtStructures_Validated);
             // 
             // txtDeaths
             // 
@@ -106,6 +123,8 @@ namespace Beadando_projekt
             this.txtDeaths.Name = "txtDeaths";
             this.txtDeaths.Size = new System.Drawing.Size(157, 20);
             this.txtDeaths.TabIndex = 7;
+            this.txtDeaths.Validating += new System.ComponentModel.CancelEventHandler(this.txtDeaths_Validating);
+            this.txtDeaths.Validated += new System.EventHandler(this.txtDeaths_Validated);
             // 
             // label1
             // 
@@ -199,6 +218,7 @@ namespace Beadando_projekt
             // 
             // btnDone
             // 
+            this.btnDone.CausesValidation = false;
             this.btnDone.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.btnDone.Location = new System.Drawing.Point(170, 402);
             this.btnDone.Name = "btnDone";
@@ -221,6 +241,7 @@ namespace Beadando_projekt
             // 
             // btnDelete
             // 
+            this.btnDelete.CausesValidation = false;
             this.btnDelete.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.btnDelete.Location = new System.Drawing.Point(318, 296);
             this.btnDelete.Name = "btnDelete";
@@ -229,6 +250,10 @@ namespace Beadando_projekt
             this.btnDelete.Text = "Mezők törlése";
             this.btnDelete.UseVisualStyleBackColor = true;
             this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
+            // 
+            // errorProvider1
+            // 
+            this.errorProvider1.ContainerControl = this;
             // 
             // Form1
             // 
@@ -257,6 +282,7 @@ namespace Beadando_projekt
             this.Controls.Add(this.txtName);
             this.Name = "Form1";
             this.Text = "Form1";
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -284,6 +310,7 @@ namespace Beadando_projekt
         private System.Windows.Forms.Button btnDone;
         private System.Windows.Forms.Button btnAdd;
         private System.Windows.Forms.Button btnDelete;
+        private System.Windows.Forms.ErrorProvider errorProvider1;
     }
 }
 

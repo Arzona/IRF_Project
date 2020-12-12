@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using Excel = Microsoft.Office.Interop.Excel;
 using System.Reflection;
 using System.IO;
+using System.Text.RegularExpressions;
 
 namespace Beadando_projekt
 {
@@ -194,6 +195,191 @@ namespace Beadando_projekt
             }
 
             CleanForm(this.Controls);
+        }
+
+        private bool ValidField(string txt)
+        {
+            return !string.IsNullOrEmpty(txt);
+        }
+        private bool ValidString(string txt)
+        {
+            Regex r = new Regex(@"^[A-Za-záéiíoóöőuúüűÁÉIÍOÓÖŐUÚÜŰ\s]*$");
+            return r.IsMatch(txt);
+        }
+        private bool ValidNumber(string nb)
+        {
+            Regex r = new Regex(@"^[0-9]*$");
+            return r.IsMatch(nb);
+        }
+
+        private void txtName_Validating(object sender, CancelEventArgs e)
+        {
+            if (!ValidField(txtName.Text))
+            {
+                e.Cancel = true;
+                errorProvider1.SetError(txtName, "Nem lehet üres a mező!");
+            }
+            if (!ValidString(txtName.Text))
+            {
+                e.Cancel = true;
+                errorProvider1.SetError(txtName, "Csak betűket adjon meg!");
+            }
+        }
+
+        private void txtName_Validated(object sender, EventArgs e)
+        {
+            errorProvider1.SetError(txtName, "");
+            txtName.BackColor = Color.Green;
+        }
+
+        private void txtCause_Validating(object sender, CancelEventArgs e)
+        {
+            if (!ValidField(txtCause.Text))
+            {
+                e.Cancel = true;
+                errorProvider1.SetError(txtCause, "Nem lehet üres a mező!");
+            }
+            if (!ValidString(txtCause.Text))
+            {
+                e.Cancel = true;
+                errorProvider1.SetError(txtCause, "Csak betűket adjon meg!");
+            }
+        }
+
+        private void txtCause_Validated(object sender, EventArgs e)
+        {
+            errorProvider1.SetError(txtCause, "");
+            txtCause.BackColor = Color.Green;
+        }
+
+        private void txtMonth_Validating(object sender, CancelEventArgs e)
+        {
+            if (!ValidField(txtMonth.Text))
+            {
+                e.Cancel = true;
+                errorProvider1.SetError(txtMonth, "Nem lehet üres a mező!");
+            }
+        }
+
+        private void txtMonth_Validated(object sender, EventArgs e)
+        {
+            errorProvider1.SetError(txtMonth, "");
+            txtMonth.BackColor = Color.Green;
+        }
+
+        private void txtYear_Validating(object sender, CancelEventArgs e)
+        {
+            bool valid = true;
+
+            if (!ValidField(txtYear.Text))
+            {
+                e.Cancel = true;
+                errorProvider1.SetError(txtYear, "Nem lehet üres a mező!");
+            }
+            if (!ValidNumber(txtYear.Text))
+            {
+                e.Cancel = true;
+                errorProvider1.SetError(txtYear, "Csak számokat adjon meg!");
+                valid = false;
+
+            }
+            if (valid)
+            {
+                if (int.Parse(txtYear.Text) > DateTime.Now.Year)
+                {
+                    e.Cancel = true;
+                    errorProvider1.SetError(txtYear, "Ne jövőbeli dátumot adjon meg!");
+                }
+            }                        
+        }
+
+        private void txtYear_Validated(object sender, EventArgs e)
+        {
+            errorProvider1.SetError(txtYear, "");
+            txtYear.BackColor = Color.Green;
+        }
+
+        private void txtCountry_Validating(object sender, CancelEventArgs e)
+        {
+            if (!ValidField(txtCountry.Text))
+            {
+                e.Cancel = true;
+                errorProvider1.SetError(txtCountry, "Nem lehet üres a mező!");
+            }
+            if (!ValidString(txtCountry.Text))
+            {
+                e.Cancel = true;
+                errorProvider1.SetError(txtCountry, "Csak betűket adjon meg!");
+            }
+        }
+
+        private void txtCountry_Validated(object sender, EventArgs e)
+        {
+            errorProvider1.SetError(txtCountry, "");
+            txtCountry.BackColor = Color.Green;
+        }
+
+        private void txtAcres_Validating(object sender, CancelEventArgs e)
+        {
+            if (!ValidField(txtAcres.Text))
+            {
+                e.Cancel = true;
+                errorProvider1.SetError(txtAcres, "Nem lehet üres a mező!");
+            }
+            if (!ValidNumber(txtAcres.Text))
+            {
+                e.Cancel = true;
+                errorProvider1.SetError(txtAcres, "Csak számokat adjon meg!");
+
+            }
+        }
+
+        private void txtAcres_Validated(object sender, EventArgs e)
+        {
+            errorProvider1.SetError(txtAcres, "");
+            txtAcres.BackColor = Color.Green;
+        }
+
+        private void txtStructures_Validating(object sender, CancelEventArgs e)
+        {
+            if (!ValidField(txtStructures.Text))
+            {
+                e.Cancel = true;
+                errorProvider1.SetError(txtStructures, "Nem lehet üres a mező!");
+            }
+            if (!ValidNumber(txtStructures.Text))
+            {
+                e.Cancel = true;
+                errorProvider1.SetError(txtStructures, "Csak számokat adjon meg!");
+
+            }
+        }
+
+        private void txtStructures_Validated(object sender, EventArgs e)
+        {
+            errorProvider1.SetError(txtStructures, "");
+            txtStructures.BackColor = Color.Green;
+        }
+
+        private void txtDeaths_Validating(object sender, CancelEventArgs e)
+        {
+            if (!ValidField(txtDeaths.Text))
+            {
+                e.Cancel = true;
+                errorProvider1.SetError(txtDeaths, "Nem lehet üres a mező!");
+            }
+            if (!ValidNumber(txtDeaths.Text))
+            {
+                e.Cancel = true;
+                errorProvider1.SetError(txtDeaths, "Csak számokat adjon meg!");
+
+            }
+        }
+
+        private void txtDeaths_Validated(object sender, EventArgs e)
+        {
+            errorProvider1.SetError(txtDeaths, "");
+            txtDeaths.BackColor = Color.Green;
         }
     }
 }
