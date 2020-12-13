@@ -21,15 +21,10 @@ namespace Beadando_projekt
         Excel.Worksheet xlSheet;
 
         List<Fire> _fires = new List<Fire>();
-
-       
-
+        
         public Form1()
         {
-            InitializeComponent();            
-            
-            
-            
+            InitializeComponent();           
         }
 
         private string GetCell(int x, int y)
@@ -169,20 +164,22 @@ namespace Beadando_projekt
             Excel.Range lastColumn = xlSheet.get_Range(GetCell(1, header), GetCell(lastRowID, header));
             lastColumn.Interior.Color = Color.Red;
             lastColumn.NumberFormat = "#,##0.00";
-
-
         }
+        
+       
 
         private void btnDone_Click(object sender, EventArgs e)
         {
 
             LoadFires();
             CreateExcel();
+            
         }
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
             CleanForm(this.Controls);
+           
             
         }
         

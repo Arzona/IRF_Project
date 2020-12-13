@@ -220,11 +220,11 @@ namespace Beadando_projekt
             // 
             this.btnDone.CausesValidation = false;
             this.btnDone.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.btnDone.Location = new System.Drawing.Point(170, 402);
+            this.btnDone.Location = new System.Drawing.Point(139, 402);
             this.btnDone.Name = "btnDone";
-            this.btnDone.Size = new System.Drawing.Size(94, 36);
+            this.btnDone.Size = new System.Drawing.Size(157, 36);
             this.btnDone.TabIndex = 18;
-            this.btnDone.Text = "Kész";
+            this.btnDone.Text = "Excel megjelenítése";
             this.btnDone.UseVisualStyleBackColor = true;
             this.btnDone.Click += new System.EventHandler(this.btnDone_Click);
             // 
