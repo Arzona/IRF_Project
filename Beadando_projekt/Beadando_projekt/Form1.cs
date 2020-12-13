@@ -143,12 +143,39 @@ namespace Beadando_projekt
                 xlSheet.get_Range(
                GetCell(2, 1),
                GetCell(1 + values.GetLength(0), values.GetLength(1))).Value2 = values;
-
+               FormatTable(headers.Length);
             }            
+        }
+
+        private void FormatTable(int header)
+        {
+            Excel.Range headerRange = xlSheet.get_Range(GetCell(1, 1), GetCell(1, header));
+            headerRange.Font.Bold = true;
+            headerRange.VerticalAlignment = Excel.XlVAlign.xlVAlignCenter;
+            headerRange.HorizontalAlignment = Excel.XlHAlign.xlHAlignCenter;
+            headerRange.EntireColumn.AutoFit();
+            headerRange.RowHeight = 40;
+            headerRange.Interior.Color = Color.LightBlue;
+            headerRange.BorderAround2(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThick);
+            headerRange.Borders.LineStyle = Excel.XlLineStyle.xlContinuous;
+
+            int lastRowID = xlSheet.UsedRange.Rows.Count;
+            Excel.Range tableRange = xlSheet.get_Range(GetCell(1, 1), GetCell(lastRowID, header));
+            tableRange.BorderAround2(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThick);
+            tableRange.Borders.LineStyle = Excel.XlLineStyle.xlContinuous;
+            Excel.Range firstColumn = xlSheet.get_Range(GetCell(1, 1), GetCell(lastRowID, 1));
+            firstColumn.Font.Bold = true;
+            firstColumn.Interior.Color = Color.Orange;
+            Excel.Range lastColumn = xlSheet.get_Range(GetCell(1, header), GetCell(lastRowID, header));
+            lastColumn.Interior.Color = Color.Red;
+            lastColumn.NumberFormat = "#,##0.00";
+
+
         }
 
         private void btnDone_Click(object sender, EventArgs e)
         {
+
             LoadFires();
             CreateExcel();
         }
@@ -166,6 +193,7 @@ namespace Beadando_projekt
                 if (c is TextBox)
                 {
                     c.ResetText();
+                    c.BackColor = Color.Empty;
                 }
             }
         }
@@ -185,7 +213,7 @@ namespace Beadando_projekt
 
             using (StreamWriter sw = new StreamWriter("top_20_CA_wildfires.csv", true, Encoding.UTF8))
             {
-                
+                sw.WriteLine();
 
                 for (int i = 0; i < datas.Length; i++)
                 {
@@ -269,7 +297,7 @@ namespace Beadando_projekt
 
         private void txtYear_Validating(object sender, CancelEventArgs e)
         {
-            bool valid = true;
+           
 
             if (!ValidField(txtYear.Text))
             {
@@ -279,18 +307,16 @@ namespace Beadando_projekt
             if (!ValidNumber(txtYear.Text))
             {
                 e.Cancel = true;
-                errorProvider1.SetError(txtYear, "Csak számokat adjon meg!");
-                valid = false;
-
-            }
-            if (valid)
+                errorProvider1.SetError(txtYear, "Csak számokat adjon meg!");               
+                return;
+                
+            }                   
+            if (int.Parse(txtYear.Text) > DateTime.Now.Year)
             {
-                if (int.Parse(txtYear.Text) > DateTime.Now.Year)
-                {
-                    e.Cancel = true;
-                    errorProvider1.SetError(txtYear, "Ne jövőbeli dátumot adjon meg!");
-                }
-            }                        
+                e.Cancel = true;
+                errorProvider1.SetError(txtYear, "Ne jövőbeli dátumot adjon meg!");
+            }
+                               
         }
 
         private void txtYear_Validated(object sender, EventArgs e)
